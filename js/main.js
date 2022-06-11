@@ -1,20 +1,21 @@
-function getRandomNumber (min,max) {
+function isRandomInteger (min,max) {
   if (min < 0 || max < 0)  {
     throw new Error ('Введите число больше нуля!');
   }
   if (max <= min) {
-    throw new Error ('Звчение "до" должно быть больше значения "от"!');
+    throw new Error ('Значение "до" должно быть больше значения "от"!');
   }
   return Math.floor(Math.random()*(max-min+1))+min;
 }
 
-getRandomNumber(5,20);
+isRandomInteger(5,20);
 
-function getLengthString (checkString, maxLength) {
-  if (checkString.length < maxLength) {
-    return true;
-  }
-  return false;
+function checkLengthText(string, length) {
+  return string.length <= length;
 }
 
-getLengthString('7',89);
+checkLengthText('7',89);
+
+const isLengthText = (string, length) => string.length <= length; //увидела в критериях, что это идеальный вариант, правильно?
+
+isLengthText('7',89);
