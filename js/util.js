@@ -17,7 +17,11 @@ const getRandomInteger = (min,max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+getRandomInteger();
+
 const checkTextLength = (text, maxLength) => text.length <= maxLength;
+
+checkTextLength('Строка', 15);
 
 const shuffleArray = (items) => {
   for (let i = items.length - 1; i > 0; i--) {

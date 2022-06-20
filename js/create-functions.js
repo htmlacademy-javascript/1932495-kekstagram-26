@@ -25,7 +25,8 @@ const createPhotos = () => {
   return photos;
 };
 
-const somePhotos = createPhotos(25);
+// const somePhotos = createPhotos(25); //не понимаю, куда отнести эту переменную, ошибка везде выдается.
 // console.log(somePhotos);
+createPhotos();
 
 export {commentIdCounter, createPhotoComment, createPhotos};
