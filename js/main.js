@@ -1,4 +1,5 @@
-import './create-functions.js';
-import './util.js';
-import './data.js';
+import { createPhotos } from './create-photos.js';
+
+const somePhotos = createPhotos(25);
+somePhotos();
 

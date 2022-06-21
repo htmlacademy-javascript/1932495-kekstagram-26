@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger, getRandomArrayElement, shuffleArray} from './util.js';
+import {getRandomPositiveInteger, getRandomArrayElement, shuffleArray} from './random.js';
 import {DESCRIPTIONS, NAMES, MESSAGES} from './data.js';
 
 let commentIdCounter = 1;
@@ -25,8 +25,4 @@ const createPhotos = () => {
   return photos;
 };
 
-// const somePhotos = createPhotos(25); //не понимаю, куда отнести эту переменную, ошибка везде выдается.
-// console.log(somePhotos);
-createPhotos();
-
-export {commentIdCounter, createPhotoComment, createPhotos};
+export {createPhotos};
