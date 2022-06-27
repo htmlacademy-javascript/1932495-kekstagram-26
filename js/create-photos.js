@@ -25,4 +25,8 @@ const createPhotos = () => {
   return photos;
 };
 
-export {createPhotos};
+const SIMILAR_PHOTO_COUNT = 25;
+const somePhotos = () => Array.from({length: SIMILAR_PHOTO_COUNT}, createPhotos);
+
+
+export {somePhotos};
