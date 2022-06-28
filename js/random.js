@@ -25,7 +25,4 @@ const getRandomInteger = (min,max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const checkTextLength = (text, maxLength) => text.length <= maxLength;
-
-
-export {getRandomPositiveInteger, getRandomArrayElement, shuffleArray, checkTextLength, getRandomInteger};
+export {getRandomPositiveInteger, getRandomArrayElement, shuffleArray, getRandomInteger};
