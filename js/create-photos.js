@@ -11,9 +11,9 @@ const createPhotoComment = () => ({
 });
 
 
-const createPhotos = () => {
+const createPhotos = (count) => {
   const photos = [];
-  for (let i = 1; i <= 25; i++) {
+  for (let i = 1; i <= count; i++) {
     photos.push({
       id: i,
       url: `photos/${i}.jpg`,
@@ -25,4 +25,7 @@ const createPhotos = () => {
   return photos;
 };
 
-export {createPhotos};
+
+const somePhotos = createPhotos(25);
+
+export {somePhotos};
