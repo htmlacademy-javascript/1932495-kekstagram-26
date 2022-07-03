@@ -1,3 +1,11 @@
 const checkTextLength = (text, maxLength) => text.length <= maxLength;
 
-export {checkTextLength};
+const removeElement = (element) => {
+  element.remove();
+};
+
+export {
+  checkTextLength,
+  removeElement,
+};
+

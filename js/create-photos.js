@@ -19,13 +19,11 @@ const createPhotos = (count) => {
       url: `photos/${i}.jpg`,
       description: getRandomArrayElement(DESCRIPTIONS),
       likes: getRandomPositiveInteger(15, 200),
-      comments: Array.from({length: 4}, createPhotoComment)
+      comments: Array.from({length: getRandomPositiveInteger(1, 6)}, createPhotoComment)
     });
   }
   return photos;
 };
 
 
-const somePhotos = createPhotos(25);
-
-export {somePhotos};
+export {createPhotos};
