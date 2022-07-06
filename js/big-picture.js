@@ -1,71 +1,57 @@
+import { renderBigPictureComments } from './big-picture-comments.js';
+
 const fullPhotoElement = document.querySelector('.big-picture');
 const bigPhotoImageElement = fullPhotoElement.querySelector('img');
 const bigPhotoLikesElement = fullPhotoElement.querySelector('.likes-count');
 const bigPhotoCommentsElement = fullPhotoElement.querySelector('.comments-count');
 const bigPhotoDescriptionElement = fullPhotoElement.querySelector('.social__caption');
-const bigPhotoCloseElement = fullPhotoElement.querySelector('.big-picture__cancel');
+const bigPhotoCancelButtonElement = fullPhotoElement.querySelector('.big-picture__cancel');
 const bigPhotoCommentCount = fullPhotoElement.querySelector('.social__comment-count');
 const bigPhotoCommentLoader = fullPhotoElement.querySelector('.comments-loader');
-const bodyElement = document.querySelector('body');
 
-//Берем список комментариев
 const commentListElements = document.querySelector('.social__comments');
 
-//Берем li у списка
-const commentElement = document.querySelector('.social__comment');
+let cancelButtonClickCallback = null;
 
-//Создаем контейнер для комментариев
-const commentListFragment = document.createDocumentFragment();
+const onBigPhotoCloseButtonElement = () => {
+  if (typeof cancelButtonClickCallback === 'function') {
+    cancelButtonClickCallback();
+  }
+};
 
-const showBigPhoto = (photo) => {
+const showBigPicture = (photo) => {
+  const { url, likes, description, comments } = photo;
+
+  bigPhotoImageElement.src = url;
+  bigPhotoLikesElement.textContent = likes;
+  bigPhotoDescriptionElement.textContent = description;
+  bigPhotoCommentsElement.textContent = comments.length;
+
+  commentListElements.innerHTML = '';
+
+  renderBigPictureComments(commentListElements, comments);
 
   fullPhotoElement.classList.remove('hidden');
   bigPhotoCommentCount.classList.add('hidden');
   bigPhotoCommentLoader.classList.add('hidden');
-  bodyElement.classList.add('modal-open');
+  document.body.classList.add('modal-open');
 
-  bigPhotoImageElement.src = photo.url;
-  bigPhotoLikesElement.textContent = photo.likes;
-  bigPhotoCommentsElement.textContent = photo.comments.length;
-  bigPhotoDescriptionElement.textContent = photo.description;
-
-  commentListElements.textContent = '';
-
-  photo.comments.forEach((comment) => {
-
-    const copyCommentElement = commentElement.cloneNode(true);
-
-    const commentAvatar = copyCommentElement.querySelector('.social__picture');
-    const commentMessage = copyCommentElement.querySelector('.social__text');
-    commentAvatar.src = comment.avatar;
-    commentAvatar.alt = comment.name;
-    commentMessage.textContent = comment.message;
-    commentListFragment.append(copyCommentElement);
-  });
-
-  // Размещаем фрагмент с комментариями
-  commentListElements.append(commentListFragment);
-
-  document.addEventListener('keydown', onEscapeClick);
+  bigPhotoCancelButtonElement.addEventListener('click', onBigPhotoCloseButtonElement);
 };
 
 const hideBigPicture = () => {
   fullPhotoElement.classList.add('hidden');
-  bodyElement.classList.remove('modal-open');
-  document.removeEventListener('keydown', onEscapeClick);
+  document.body.classList.remove('modal-open');
+
+  bigPhotoCancelButtonElement.removeEventListener('click', onBigPhotoCloseButtonElement);
 };
 
-bigPhotoCloseElement.addEventListener('click', () => {
-  hideBigPicture();
-});
+const setBigPictureCancelButtonHandler = (callback) => {
+  cancelButtonClickCallback = callback;
+};
 
-function onEscapeClick(e) {
-  if (e.code === 'Escape') {
-    hideBigPicture();
-  }
-}
-
-showBigPhoto();
-hideBigPicture(); //чтобы линтер не ругался
-
-export {showBigPhoto, hideBigPicture};
+export {
+  showBigPicture,
+  hideBigPicture,
+  setBigPictureCancelButtonHandler,
+};
