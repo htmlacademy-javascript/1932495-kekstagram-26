@@ -1,6 +1,10 @@
-import './create-thumbnails.js';
-import './create-photos.js';
-import './gallery.js';
+import { addPhotos, removePhotos } from './gallery.js';
 
-// const somePhotos = createPhotos(25);
-// somePhotos();
+import { createPhotos } from './create-photos.js';
+
+const somePhotos = createPhotos(25);
+
+addPhotos(somePhotos);
+
+export { removePhotos }; //дли линтера
+
