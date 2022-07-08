@@ -6,14 +6,14 @@ const bigPhotoLikesElement = fullPhotoElement.querySelector('.likes-count');
 const bigPhotoCommentsElement = fullPhotoElement.querySelector('.comments-count');
 const bigPhotoDescriptionElement = fullPhotoElement.querySelector('.social__caption');
 const bigPhotoCancelButtonElement = fullPhotoElement.querySelector('.big-picture__cancel');
-const bigPhotoCommentCount = fullPhotoElement.querySelector('.social__comment-count');
-const bigPhotoCommentLoader = fullPhotoElement.querySelector('.comments-loader');
+const bigPhotoCommentCountElement = fullPhotoElement.querySelector('.social__comment-count');
+const bigPhotoCommentLoaderElement = fullPhotoElement.querySelector('.comments-loader');
 
 const commentListElements = document.querySelector('.social__comments');
 
 let cancelButtonClickCallback = null;
 
-const onBigPhotoCloseButtonElement = () => {
+const onBigPhotoCancelButtonElement = () => {
   if (typeof cancelButtonClickCallback === 'function') {
     cancelButtonClickCallback();
   }
@@ -32,18 +32,18 @@ const showBigPicture = (photo) => {
   renderBigPictureComments(commentListElements, comments);
 
   fullPhotoElement.classList.remove('hidden');
-  bigPhotoCommentCount.classList.add('hidden');
-  bigPhotoCommentLoader.classList.add('hidden');
+  bigPhotoCommentCountElement.classList.add('hidden');
+  bigPhotoCommentLoaderElement.classList.add('hidden');
   document.body.classList.add('modal-open');
 
-  bigPhotoCancelButtonElement.addEventListener('click', onBigPhotoCloseButtonElement);
+  bigPhotoCancelButtonElement.addEventListener('click', onBigPhotoCancelButtonElement);
 };
 
 const hideBigPicture = () => {
   fullPhotoElement.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
-  bigPhotoCancelButtonElement.removeEventListener('click', onBigPhotoCloseButtonElement);
+  bigPhotoCancelButtonElement.removeEventListener('click', onBigPhotoCancelButtonElement);
 };
 
 const setBigPictureCancelButtonHandler = (callback) => {
