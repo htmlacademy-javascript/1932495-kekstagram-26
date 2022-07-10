@@ -13,7 +13,7 @@ const commentListElements = document.querySelector('.social__comments');
 
 let cancelButtonClickCallback = null;
 
-const onBigPhotoCancelButtonElement = () => {
+const onBigPhotoCancelButtonClick = () => {
   if (typeof cancelButtonClickCallback === 'function') {
     cancelButtonClickCallback();
   }
@@ -36,14 +36,14 @@ const showBigPicture = (photo) => {
   bigPhotoCommentLoaderElement.classList.add('hidden');
   document.body.classList.add('modal-open');
 
-  bigPhotoCancelButtonElement.addEventListener('click', onBigPhotoCancelButtonElement);
+  bigPhotoCancelButtonElement.addEventListener('click', onBigPhotoCancelButtonClick);
 };
 
 const hideBigPicture = () => {
   fullPhotoElement.classList.add('hidden');
   document.body.classList.remove('modal-open');
 
-  bigPhotoCancelButtonElement.removeEventListener('click', onBigPhotoCancelButtonElement);
+  bigPhotoCancelButtonElement.removeEventListener('click', onBigPhotoCancelButtonClick);
 };
 
 const setBigPictureCancelButtonHandler = (callback) => {
