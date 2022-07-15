@@ -9,17 +9,17 @@ const hashtagsFieldElement = uploadFormElement.querySelector('.text__hashtags');
 
 
 //Нажатие на ESC
-const onEscapeKeydownClick = (evt) => {
+const onEscapeKeydown = (evt) => {
 
   if (isEscapeEvent(evt)) {
     imgUploadOverlayElement.classList.add('hidden');
     document.body.classList.remove('modal-open');
     uploadFormElement.reset();
-    document.removeEventListener('keydown', onEscapeKeydownClick);
+    document.removeEventListener('keydown', onEscapeKeydown);
   }
 };
 
-const onEscapeKeydownFormFocusClick = (evt) => {
+const onEscapeKeydownFormFocus = (evt) => {
 
   if (isEscapeEvent(evt)) {
     evt.stopPropagation();
@@ -30,24 +30,24 @@ const onEscapeKeydownFormFocusClick = (evt) => {
 uploadFileElement.addEventListener('change', () => {
   imgUploadOverlayElement.classList.remove('hidden');
   document.body.classList.add('modal-open');
-  document.addEventListener('keydown', onEscapeKeydownClick);
+  document.addEventListener('keydown', onEscapeKeydown);
 });
 
 //Функция закрытия окна загрузки
-const closeUploudFileElement = () => {
+const closeUploudFile = () => {
   imgUploadOverlayElement.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onEscapeKeydownClick);
+  document.removeEventListener('keydown', onEscapeKeydown);
 
 };
 
 //Закрытие по кнопке
 buttonCloseFormElement.addEventListener('click', () => {
-  closeUploudFileElement();
+  closeUploudFile();
 });
 
 //Обработчики по полям хэштег и описание
-commentFieldElement.addEventListener('keydown', onEscapeKeydownFormFocusClick);
-hashtagsFieldElement.addEventListener('keydown', onEscapeKeydownFormFocusClick);
+commentFieldElement.addEventListener('keydown', onEscapeKeydownFormFocus);
+hashtagsFieldElement.addEventListener('keydown', onEscapeKeydownFormFocus);
 
 export {uploadFormElement};

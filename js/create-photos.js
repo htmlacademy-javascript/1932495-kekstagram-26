@@ -19,7 +19,7 @@ const createPhotos = (count) => {
       url: `photos/${i}.jpg`,
       description: getRandomArrayElement(DESCRIPTIONS),
       likes: getRandomPositiveInteger(15, 200),
-      comments: Array.from({length: getRandomPositiveInteger(1, 6)}, createPhotoComment)
+      comments: Array.from({length: getRandomPositiveInteger(1, 125)}, createPhotoComment)
     });
   }
   return photos;
