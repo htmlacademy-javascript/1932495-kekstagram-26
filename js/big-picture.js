@@ -9,6 +9,7 @@ const bigPhotoCancelButtonElement = fullPhotoElement.querySelector('.big-picture
 const bigPhotoCommentCountElement = fullPhotoElement.querySelector('.social__comment-count');
 const bigPhotoCommentLoaderElement = fullPhotoElement.querySelector('.comments-loader');
 
+
 const commentListElements = document.querySelector('.social__comments');
 
 let cancelButtonClickCallback = null;
